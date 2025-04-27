@@ -1,6 +1,18 @@
 #include<iostream>
+#include<string>
+#include<queue>
 using namespace std;
-int main(){
-    cout<<"This is my third day project";
-    return 0;
-}
+class Order {
+    public:
+    int token_no;
+    string order_type;
+    string payment_process;
+    int making_time;
+    Order(int no,string type,string process,int time){
+        token_no=no;
+        order_type=type;
+        payment_process=process;
+        making_time=time;
+
+    }
+};
