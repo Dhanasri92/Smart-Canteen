@@ -16,3 +16,57 @@ class Order {
 
     }
 };
+class Queue_Manager 
+{
+    private:
+    queue<Order> bevageQueue;
+    queue<Order> lunchQueue;
+
+    public:
+    void addOrder(const Order &order){
+        if(order.order_type =="bevage"){
+            cout<<"added token no"<<order.token_no<<"to the bevage session";
+        }
+            else if(order.order_type=="lunch"){
+                cout<<"added token no"<<order.token_no<<"to the lunch session";
+
+            
+        }
+        else{
+            cout<<"invalid input"<<" ";
+
+        }
+    }
+
+}
+void processOrder(const string &counter_type){
+    if (counter_type=="bevage"){
+        if (bevageQueue.empty()){
+            cout<<"No current orders"<<" ";
+
+        }else {
+           Order current  =bevageQueue.front();
+           bevageQueue.pop();
+           cout<<"preparing bevage token no"<<current.token_no<<"Payment:"<<current.payment_process<<" ";
+
+
+        }
+    }else if(counter_type=="lunch"){
+        if(lunchQueue.empty()){
+            cout<<"No  current orders on lunch counter"<<" ";
+            
+        }else {
+            Order current = lunchQueue.front();
+            lunchQueue.pop();
+            cout<<"payment:"<<current.payment_process<<" ";
+
+
+        }
+
+    } else
+    { cout<<" invalid input"<<" ";
+        
+
+    }
+    
+}
