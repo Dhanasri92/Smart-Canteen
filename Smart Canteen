@@ -65,8 +65,32 @@ void processOrder(const string &counter_type){
 
     } else
     { cout<<" invalid input"<<" ";
-        
+
 
     }
     
 }
+void estimateWaitTime(const string& counterType) {
+    int totalTime = 0;
+    if (counterType == "Beverage") {
+    queue<Order> tempQueue = beverageQueue;
+    while (!tempQueue.empty()) {
+    totalTime += tempQueue.front().prepTime;
+    tempQueue.pop();
+    }
+    cout << "Estimated wait time for Beverage Counter: " << totalTime << "
+   minutes.\n";
+    } else if (counterType == "Lunch") {
+    queue<Order> tempQueue = lunchQueue;
+    while (!tempQueue.empty()) {
+    totalTime += tempQueue.front().prepTime;
+    tempQueue.pop();
+    }
+    cout << "Estimated wait time for Lunch Counter: " << totalTime << "
+   minutes.\n";
+    } else {
+    cout << "Invalid counter type.\n";
+    }
+    };
+   
+   
