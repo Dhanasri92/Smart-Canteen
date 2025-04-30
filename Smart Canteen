@@ -64,33 +64,141 @@ void processOrder(const string &counter_type){
         }
 
     } else
-    { cout<<" invalid input"<<" ";
+    { 
+        cout<<" invalid input"<<" ";
 
 
     }
     
 }
-void estimateWaitTime(const string& counterType) {
+
+void estimateWaitTime(const string& counter_type) {
     int totalTime = 0;
-    if (counterType == "Beverage") {
+    if (counter_type == "Beverage") {
     queue<Order> tempQueue = beverageQueue;
     while (!tempQueue.empty()) {
-    totalTime += tempQueue.front().prepTime;
+    totalTime += tempQueue.front().making_time;
     tempQueue.pop();
     }
-    cout << "Estimated wait time for Beverage Counter: " << totalTime << "
-   minutes.\n";
-    } else if (counterType == "Lunch") {
+    cout << "Estimated wait time for Beverage Counter: " << totalTime << "minutes.\n";
+    }
+     else if (counter_type == "Lunch") {
     queue<Order> tempQueue = lunchQueue;
     while (!tempQueue.empty()) {
-    totalTime += tempQueue.front().prepTime;
+    totalTime += tempQueue.front().making_time;
     tempQueue.pop();
     }
-    cout << "Estimated wait time for Lunch Counter: " << totalTime << "
-   minutes.\n";
-    } else {
+    cout << "Estimated wait time for Lunch Counter: " << totalTime << "minutes.\n";
+    } 
+    else {
     cout << "Invalid counter type.\n";
     }
     };
+    class Canteen {
+        private: Queue_Manager queue_manager;   
+        int order_Counter
+        public:
+        Canteen() : order_Counter(0) {}
+        void  displayMenu(){
+            cout<<"Menu\n";
+            cout<<"bevages\n";
+            cout<<"ice cream\n";
+            cout<<"Cool drinks\n";
+            cout<<"chocolets\n";
+            cout<<"juices\n";
+            cout<<"Tea\n";
+            cout<<"Coco cola\n";
+
+        }
+        void displayPaymentOptions (cons strin & order_type)
+        {
+            cout<<"payment methods for order type"<<order_type<<" ";    
+        if (order_type=="bevage") {
+            cout<<"digital payment\n";
+        }  
+        else if(order_type=="lunch"){
+            cout<<"Cash or card\n";
+
+        } else{
+            cout<<"incorrect input"<<" "; 
+        }
+    
+    
+    
+    }
+    string selectPaymentMethod(int choice, const string& itemType) {
+        if (itemType == "Bevage") {
+            if (choice == 1) return "digital payment\n";
+        } else if (itemType == "Lunch") {
+            if (choice == 1) return "Cash";
+            if (choice == 2) return "Card";
+        }
+        return "Invalid";
+    }
+    void takeOrder(int menuChoice, int paymentChoice) {
+        string order_type;
+        int making_time = 0;
+
+        // Determine item type and preparation time
+        if (menuChoice == 1) { itemType = "Beverage"; prepTime = 5; }
+        else if (menuChoice == 2) { order_type = "Beverage"; making_time = 4; }
+        else if (menuChoice == 3) { order_type = "Beverage"; making_time = 3; }
+        else if (menuChoice == 4) { order_type = "Lunch"; making_time = 10; }
+        else if (menuChoice == 5) { order_type = "Lunch"; making_time = 15; }
+        else if (menuChoice == 6) { order_type = "Lunch"; making_time = 12; }
+        else {
+            cout << "Invalid menu choice.\n";
+            return;
+        }
+
+
+
+        
+        string payment_process = selectPaymentMethod(paymentChoice, order_type);
+        if (payment_process == "Invalid") {
+            cout << "Invalid payment choice.\n";
+            return;
+        }
+        order_Counter++;
+        Order newOrder(order_Counter, order_type, payment_process, making_time);
+        queue_Manager.addOrder(newOrder);
+    }
+    void processOrders(const string& counter_type) {
+        queueManager.processOrder(counter_type);
+    }
+
+    void estimateWaitTimes(const string& counte_type) {
+        queue_Manager.estimateWaitTime(counter_type);
+    }
+};
+int main() {
+    Canteen canteen;
+
+    cout << "Welcome to the Smart Canteen Ordering System!\n";
+    canteen.displayMenu();
+
+    cout << "\nBeverage Payment Options:\n";
+    canteen.displayPaymentOptions("Beverage");
+
+    cout << "\nLunch Payment Options:\n";
+    canteen.displayPaymentOptions("Lunch");
+
+    cout << "\nTaking Orders:\n";
+    canteen.takeOrder(1, 1); // Coffee, Digital Wallet
+    canteen.takeOrder(5, 2); // Pizza, Card
+
+    cout << "\nEstimating Wait Times:\n";
+    canteen.estimateWaitTimes("Beverage");
+    canteen.estimateWaitTimes("Lunch");
+
+    cout << "\nProcessing Orders:\n";
+    canteen.processOrders("Beverage");
+    canteen.processOrders("Lunch");
+
+    return 0;
+}
+
+
+    
    
    
