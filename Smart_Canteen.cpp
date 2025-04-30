@@ -23,11 +23,13 @@ class Queue_Manager {
     queue<Order> lunchQueue;
 
     public:
-    void addOrder(const Order &order){
+    void addOrder(const Order& order){
         if(order.order_type =="bevage"){
+            bevageQueue.push(order);
             cout<<"added token no"<<order.token_no<<"to the bevage session";
         }
             else if(order.order_type=="lunch"){
+                lunchQueue.push(order);
                 cout<<"added token no"<<order.token_no<<"to the lunch session";
 
             
@@ -59,7 +61,7 @@ void processOrder(const string &counter_type){
         }else {
             Order current = lunchQueue.front();
             lunchQueue.pop();
-            cout<<"payment:"<<current.payment_process<<" ";
+            cout<< "processing the token no"<<current.token_no<<"payment:"<<current.payment_process<<" ";
 
 
         }
@@ -116,10 +118,11 @@ void estimateWaitTime(const string& counter_type) {
         {
             cout<<"payment methods for order type"<<order_type<<" ";    
         if (order_type=="bevage") {
-            cout<<"digital payment\n";
+            cout<<"1. digital payment";
         }  
         else if(order_type=="lunch"){
-            cout<<"Cash or card\n";
+            cout<<"1. Cash\n";
+            cout<<"2. Card\n";
 
         } else{
             cout<<"incorrect input"<<" "; 
