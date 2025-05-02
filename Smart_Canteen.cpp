@@ -17,7 +17,7 @@ class Order {
     }
 };
 
-class Queue_Manager {
+class ManageQueue  {
     private:
     queue<Order> bevageQueue;
     queue<Order> lunchQueue;
@@ -74,7 +74,7 @@ void processOrder(const string &counter_type){
     
 }   
 
-void estimateWaitTime(const string& counter_type) {
+void estimateWaitingTime(const string& counter_type) {
     int totalTime = 0;
     if (counter_type == "Beverage") {
     queue<Order> tempQueue = bevageQueue;
@@ -98,11 +98,11 @@ void estimateWaitTime(const string& counter_type) {
     }
 };
 
-    class Canteen {
-        private: Queue_Manager queue_Manager;   
+    class CBIT_Canteen {
+        private: ManageQueue queue_Manager;   
         int order_Counter;
         public:
-        Canteen() : order_Counter(0) {}
+       CBIT_Canteen() : order_Counter(0) {}
         void  displayMenu(){
             cout<<"Menu\n";
             cout<<"bevages\n";
@@ -166,32 +166,32 @@ void estimateWaitTime(const string& counter_type) {
         queue_Manager.processOrder(counter_type);
     }
 
-    void estimateWaitTimes(const string& counter_type) {
-        queue_Manager.estimateWaitTime(counter_type);
+    void estimateWaitingTimes(const string& counter_type) {
+        queue_Manager.estimateWaitingTime(counter_type);
     }
 };
 int main() {
-    Canteen canteen;
+    CBIT_Canteen canteen_point;
 
     cout << "Welcome to the Smart Canteen Ordering System!\n";
-    canteen.displayMenu();
+    canteen_point.displayMenu();
 
     cout << "\nBeverage Payment Options:\n";
-    canteen.displayPaymentOptions("Beverage");
+    canteen_point.displayPaymentOptions("Beverage");
 
     cout << "\nLunch Payment Options:\n";
-    canteen.displayPaymentOptions("Lunch");
+    canteen_point.displayPaymentOptions("Lunch");
 
     cout << "\nTaking Orders:\n";
-    canteen.takeOrder(1, 1); 
-    canteen.takeOrder(5, 2); 
+    canteen_point.takeOrder(1, 1); 
+    canteen_point.takeOrder(5, 2); 
     cout << "\nEstimating Wait Times:\n";
-    canteen.estimateWaitTimes("Beverage");
-    canteen.estimateWaitTimes("Lunch");
+    canteen_point.estimateWaitingTimes("Beverage");
+    canteen_point.estimateWaitingTimes("Lunch");
 
     cout << "\nProcessing Orders:\n";
-    canteen.processOrders("Beverage");
-    canteen.processOrders("Lunch");
+    canteen_point.processOrders("Beverage");
+    canteen_point.processOrders("Lunch");
 
     return 0;
 }
